@@ -1,26 +1,12 @@
 
 import { Routes } from '@angular/router';
-/* export function getTestModule() {
-    return HomeComponent;
-  }
+import {HomeComponent} from '../Home/CustomerApp.HomeComponent';
 
-export const MainRoutes: Routes = [
-    {
-     path : '',
-     redirectTo: 'CustomerModule',
-     pathMatch: 'full',
-    },
-    {
-     path: '../Customer/CustomerApp.CustomerModule',
-     loadChildren: getTestModule
-    }
-   ];
- */
 
 export const MainRoutes = [
     { path: 'Home', component: HomeComponent},
-    { path: 'Customer', loadChildren: '../Customer/CustomerApp.CustomerModule#CustomerModule'},
-    { path: 'Supplier', loadChildren: '../Supplier/CustomerApp.SupplierModule#SupplierModule'},
+    { path: 'Customer', loadChildren: () => import('../Customer/CustomerApp.CustomerModule').then(m => m.CustomerModule)},
+    { path: 'Supplier', loadChildren: () => import('../Supplier/CustomerApp.SupplierModule').then(m => m.SupplierModule)},
     { path: '', component: HomeComponent }
 ];
 
